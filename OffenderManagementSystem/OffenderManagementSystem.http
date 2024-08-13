@@ -1,0 +1,6 @@
+@OffenderManagementSystem_HostAddress = http://localhost:5051
+
+GET {{OffenderManagementSystem_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
