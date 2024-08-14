@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OffenderManagementSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f3d08c2d92242772a3398abb47362c6bb3f91aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1dae46e8c71e9644f722537ee60c0b50195b0a90")]
 [assembly: System.Reflection.AssemblyProductAttribute("OffenderManagementSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OffenderManagementSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
