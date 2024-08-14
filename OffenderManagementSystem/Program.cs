@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OffenderManagementSystem.models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,5 +38,46 @@ public class YourDbContext : DbContext
     {
     }
 
-    //public DbSet<Offender> Offenders { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Offender> Offenders { get; set; }
+    public DbSet<Report> Reports { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        // Configuring User to Offender relationship
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Offenders)
+            .WithOne(o => o.User)
+            .HasForeignKey(o => o.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Configuring User to Report relationship
+        modelBuilder.Entity<User>()
+            .HasMany(u => u.Reports)
+            .WithOne(r => r.User)
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Configuring Offender to Report relationship
+        modelBuilder.Entity<Offender>()
+            .HasMany(o => o.Reports)
+            .WithOne(r => r.Offender)
+            .HasForeignKey(r => r.OffenderId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Explicitly disabling cascading deletes on Reports
+        modelBuilder.Entity<Report>()
+            .HasOne(r => r.Offender)
+            .WithMany(o => o.Reports)
+            .HasForeignKey(r => r.OffenderId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Report>()
+            .HasOne(r => r.User)
+            .WithMany(u => u.Reports)
+            .HasForeignKey(r => r.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
 }
